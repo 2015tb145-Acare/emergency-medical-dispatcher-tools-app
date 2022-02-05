@@ -5,7 +5,7 @@ import SignInForm from "./SignInForm";
 
 import styled from "styled-components/macro";
 import { theme } from "../styles";
-const { colors, fontSizes } = theme;
+const { colors } = theme;
 
 const SignInModal = () => {
   const { modalState, toggleModals } = useContext(AppContext);

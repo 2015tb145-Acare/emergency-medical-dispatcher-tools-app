@@ -1,7 +1,5 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-
-import { ApiContext } from "../context";
 
 import styled from "styled-components/macro";
 import { mixins } from "../styles";
@@ -14,8 +12,6 @@ const AppContainer = styled.div`
 `;
 
 const Dashboard = () => {
-  const { token, refresh_token } = useContext(ApiContext);
-
   return (
     <>
       <AppContainer>
