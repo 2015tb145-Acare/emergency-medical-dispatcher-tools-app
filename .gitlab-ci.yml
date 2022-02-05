@@ -1,0 +1,58 @@
+image: "node:lts-alpine"
+
+stages:
+  - build
+  - test
+  - deploy
+
+# These folders are cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    # Default cache directory from https://classic.yarnpkg.com/en/docs/install-ci/#gitlab.
+    - node_modules/
+    # Enables git-lab CI caching. Both .cache and public must be cached, otherwise builds will fail.
+    - public/
+
+yarn:install:
+  stage: build
+  variables:
+    PUBLIC_URL: /medical-regulation-tools-app
+  script:
+    # Install via yarn with frozen-lockfile to allow reproducible dependencies and check-files option to check if the node_modules cache is valid.
+    - yarn install --frozen-lockfile --check-files --non-interactive
+    - yarn build
+  artifacts:
+    paths:
+      - build/
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_ID
+
+test:unit:
+  stage: test
+  needs: ["yarn:install"]
+  script:
+    - yarn test
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_ID
+
+pages:
+  image: alpine:latest
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none # Do not clone git repo
+  needs:
+    - yarn:install
+    - test:unit
+  script:
+    - rm -rf public
+    - mv build public
+    - cp public/index.html public/404.html # Redirect not found page
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

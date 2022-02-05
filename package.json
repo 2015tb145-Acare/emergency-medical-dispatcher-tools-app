@@ -1,0 +1,57 @@
+{
+  "name": "medical-regulation-tools-app",
+  "version": "1.0.0",
+  "description": "This is the first iteration of the medical regulation tools app",
+  "author": "Alban Caré <alban.care@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2015tb145-Acare/emergency-medical-dispatcher-tools-app"
+  },
+  "homepage": "https://2015tb145-acare.gitlab.io/emergency-medical-dispatcher-tools-app/",
+  "keywords": [],
+  "license": "MIT",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "main": "index.js",
+  "engines": {
+    "node": "16.13.2"
+  },
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.25.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^2.1.4"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }
+}
