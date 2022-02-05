@@ -18,7 +18,7 @@ cache:
 yarn:install:
   stage: build
   variables:
-    PUBLIC_URL: /medical-regulation-tools-app
+    PUBLIC_URL: /emergency-medical-dispatcher-tools-app
   script:
     # Install via yarn with frozen-lockfile to allow reproducible dependencies and check-files option to check if the node_modules cache is valid.
     - yarn install --frozen-lockfile --check-files --non-interactive
